@@ -3,7 +3,7 @@ import { Container } from "@material-ui/core";
 import SearchBarTop from "./SearchBarTop";
 import SearchBarBottom from "./SearchBarBottom";
 
-const SearchBar = ({ setQuery, query, stores, categories, setCategory, setStore, category, store, disableTopBar, setPage, sort, setSort }) => {
+const SearchBar = ({ setQuery, query, categories, setCategory, category, store, disableTopBar, setPage, sort, setSort }) => {
   return (
     <Container
       maxWidth="lg"
@@ -21,12 +21,9 @@ const SearchBar = ({ setQuery, query, stores, categories, setCategory, setStore,
         setPage={setPage}
         query={query} 
         setQuery={setQuery} 
-        stores={stores} 
         categories={categories}
         setCategory={setCategory} 
-        setStore={setStore} 
         category={category}
-        store={store}
         setSort={setSort}
         sort={sort}
         />

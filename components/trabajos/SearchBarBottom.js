@@ -35,30 +35,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SearchBarBottom = ({
-  stores,
   categories,
   setCategory,
-  setStore,
   category,
-  store,
-  setPage,
   sort,
   setSort,
 }) => {
   const classes = useStyles();
 
-  const handleChange = (event) => {
-    setPage(1);
-    setStore(event.target.value);
-  };
-
   const handleCategory = (event) => {
-    setPage(1);
     setCategory(event.target.value);
   };
 
   const handleSort = (event) => {
-    setPage(1);
     setSort(event.target.value);
   };
   return (
@@ -68,7 +57,7 @@ const SearchBarBottom = ({
       spacing={1}
       style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 20 }}
     >
-      <Grid item xs={12} sm={12} md={4} lg={4}>
+      <Grid item xs={12} sm={12} md={6} lg={6}>
         <TextField
           style={{
             backgroundColor: "#f3f7f9",
@@ -101,7 +90,7 @@ const SearchBarBottom = ({
           ))}
         </TextField>
       </Grid>
-      <Grid item xs={12} sm={12} md={4} lg={4}>
+      <Grid item xs={12} sm={12} md={6} lg={6}>
         <TextField
           style={{
             backgroundColor: "#f3f7f9",
@@ -110,34 +99,7 @@ const SearchBarBottom = ({
           }}
           select
           fullWidth
-          label="Agencia"
-          value={store}
-          onChange={handleChange}
-          SelectProps={{
-            native: true,
-          }}
-          variant="outlined"
-        >
-          <option key={0} value={"-"}>
-            Todas
-          </option>
-          {stores.map((option) => (
-            <option key={option.name} value={option._id}>
-              {capitalCase(option.make.name + ' ' + option.name.replace("-", " "))}
-            </option>
-          ))}
-        </TextField>
-      </Grid>
-      <Grid item xs={12} sm={12} md={4} lg={4}>
-        <TextField
-          style={{
-            backgroundColor: "#f3f7f9",
-            border: "0px solid rgb(217, 221, 233)",
-            borderRadius: 10,
-          }}
-          select
-          fullWidth
-          label="Precio"
+          label="Salario"
           value={sort}
           onChange={handleSort}
           SelectProps={{

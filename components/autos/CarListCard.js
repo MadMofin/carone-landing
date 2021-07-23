@@ -105,7 +105,6 @@ const CarlistCard = ({ vehicle, setDataList }) => {
   //     }
   //   }
   // }, [vehicle]);
-
   return (
     <Card className={(classes.root, classes.hover)}>
       {vehicle ? (

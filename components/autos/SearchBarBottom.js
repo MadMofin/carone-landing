@@ -1,25 +1,8 @@
 import React from "react";
 import { makeStyles, Grid, TextField } from "@material-ui/core";
 import { capitalCase } from "change-case";
-
-const currencies = [
-  {
-    value: "USD",
-    label: "$",
-  },
-  {
-    value: "EUR",
-    label: "€",
-  },
-  {
-    value: "BTC",
-    label: "฿",
-  },
-  {
-    value: "JPY",
-    label: "¥",
-  },
-];
+import useCategories from '../../hooks/useCategory';
+import useCategory from "../../hooks/useCategory";
 
 const sortOptions = [
   {
@@ -53,30 +36,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SearchBarBottom = ({
-  makes,
-  categories,
   setCategory,
   setMake,
   category,
-  make,
   setPage,
   sort,
   setSort,
 }) => {
   const classes = useStyles();
+  const { categories, getCategories } = useCategory();
 
-  const handleChange = (event) => {
-    setPage(1);
-    setMake(event.target.value);
-  };
-
+  React.useEffect(()=>{
+    getCategories();
+    //eslint-disable-next-lone
+  },[])
   const handleCategory = (event) => {
-    setPage(1);
     setCategory(event.target.value);
   };
 
   const handleSort = (event) => {
-    setPage(1);
     setSort(event.target.value);
   };
   return (
@@ -86,7 +64,7 @@ const SearchBarBottom = ({
       spacing={1}
       style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 20 }}
     >
-      <Grid item xs={12} sm={12} md={4} lg={4}>
+      <Grid item xs={12} sm={12} md={6} lg={6}>
         <TextField
           style={{
             backgroundColor: "#f3f7f9",
@@ -108,7 +86,7 @@ const SearchBarBottom = ({
           <option key={0} value={"-"}>
             Todas
           </option>
-          {categories.map((option) => (
+          {categories && categories.map((option) => (
             <option
               key={option.name}
               value={option._id}
@@ -119,34 +97,7 @@ const SearchBarBottom = ({
           ))}
         </TextField>
       </Grid>
-      <Grid item xs={12} sm={12} md={4} lg={4}>
-        <TextField
-          style={{
-            backgroundColor: "#f3f7f9",
-            border: "0px solid rgb(217, 221, 233)",
-            borderRadius: 10,
-          }}
-          select
-          fullWidth
-          label="Marca"
-          value={make}
-          onChange={handleChange}
-          SelectProps={{
-            native: true,
-          }}
-          variant="outlined"
-        >
-          <option key={0} value={"-"}>
-            Todas
-          </option>
-          {makes.map((option) => (
-            <option key={option.name} value={option._id}>
-              {capitalCase(option.name.replace("-", " "))}
-            </option>
-          ))}
-        </TextField>
-      </Grid>
-      <Grid item xs={12} sm={12} md={4} lg={4}>
+      <Grid item xs={12} sm={12} md={6} lg={6}>
         <TextField
           style={{
             backgroundColor: "#f3f7f9",

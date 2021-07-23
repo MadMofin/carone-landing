@@ -14,9 +14,7 @@ export const getServerSideProps = async (context) => {
   const res = await fetch(
     `https://apicarone.com/api/v1/vehicles/vehiclesByMake/${context.params.marca}?sort=index`
   );
-  const { req, query, asPath, pathname } = context;
-
-  console.log(req.headers.host);
+  const { req, query, asPath, pathname } = context
 
   const vehicles = await res.json();
 

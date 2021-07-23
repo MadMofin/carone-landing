@@ -11,7 +11,7 @@ import {
 
 const VehicleState = (props) => {
   const initialState = {
-    vehicles: [],
+    vehicles: null,
     loading: false,
     error: null,
     results: null,
